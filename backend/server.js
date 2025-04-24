@@ -1,20 +1,21 @@
 const express = require('express');
 const db = require('./db');
-const History = require('./models/History');
+const historyController = require('./controllers/historyController');
 
 const app = express();
-const PORT = 3000;
+app.use(express.json());
 
 // Проверка подключения к БД
 db.authenticate()
-  .then(() => console.log('БД подключена'))
-  .catch(err => console.error('Ошибка БД:', err));
+  .then(() => console.log('✅ БД подключена'))
+  .catch(err => console.error('❌ Ошибка БД:', err));
 
-// Роут для проверки работы
-app.get('/', (req, res) => {
-  res.send('Сервис работает.');
-});
+// Роуты
+app.post('/api/history', historyController.create);
+app.get('/api/history', historyController.list);
 
+// Старт сервера
+const PORT = 3000;
 app.listen(PORT, () => {
-  console.log(`Сервер запущен на http://localhost:${PORT}`);
+  console.log(`🚀 Сервер запущен на http://localhost:${PORT}`);
 });
