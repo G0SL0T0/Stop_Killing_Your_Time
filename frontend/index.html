@@ -5,8 +5,15 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>SKYT</h1>
-  <p id="status">Загрузка...</p>
+  <div class="container">
+    <h1>📺 SKYT</h1>
+    <form id="add-form">
+      <input type="text" id="title" placeholder="Название видео" required>
+      <input type="text" id="url" placeholder="URL" required>
+      <button type="submit">Добавить в историю</button>
+    </form>
+    <div id="output"></div>
+  </div>
   <script src="app.js"></script>
 </body>
 </html>
