@@ -13,6 +13,7 @@ db.authenticate()
 // Роуты
 app.post('/api/history', historyController.create);
 app.get('/api/history', historyController.list);
+app.get('/api/history/stats', historyController.getStats);
 
 // Старт сервера
 const PORT = 3000;

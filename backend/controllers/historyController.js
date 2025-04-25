@@ -1,20 +1,21 @@
-const History = require('../models/History');
-const classify = require('../../nlp/classifier');
-
-exports.create = async (req, res) => {
+exports.getStats = async (req, res) => {
   try {
-    const category = classify(req.body.title || '');
-    const history = await History.create({ ...req.body, category });
-    res.status(201).json(history);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
-
-exports.list = async (req, res) => {
-  try {
-    const histories = await History.findAll();
-    res.json(histories);
+    const totalTime = await History.sum('duration');
+    const categories = await History.findAll({
+      attributes: [
+        'category',
+        [Sequelize.fn('COUNT', Sequelize.col('id')), 'count']
+      ],
+      group: 'category'
+    });
+    
+    res.json({
+      totalTime: Math.floor(totalTime / 60), // В минутах
+      categories: categories.map(cat => ({
+        name: cat.category,
+        count: cat.get('count')
+      }))
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
