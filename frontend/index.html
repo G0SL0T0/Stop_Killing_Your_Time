@@ -1,88 +1,114 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SKYT — Умный контроль времени</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/home.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKYT — Осознанный контроль времени в интернете</title>
+
+    <!-- Подключение шрифтов -->
+    <!-- <link rel="stylesheet" href=""> -->
+
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="css/styles.css"> <!-- Стили baza -->
+    <link rel="stylesheet" href="css/home.css">   <!-- Стили main -->
+
+    <!-- Иконка сайта!!! -->
+    <!-- <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon"> -->
 </head>
 <body>
-  <!-- Шапка с навигацией -->
-  <header class="main-header">
-    <div class="container">
-      <a href="index.html" class="logo">
-        <img src="assets/icons/logo.svg" alt="SKYT" width="120">
-      </a>
-      <nav class="main-nav">
-        <ul>
-          <li><a href="index.html" class="active">Главная</a></li>
-          <li><a href="features.html">Возможности</a></li>
-          <li><a href="dashboard.html">Статистика</a></li>
-          <li><a href="history.html">История</a></li>
-          <li><a href="settings.html" class="btn-outline">Настройки</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
 
-  <!-- Герой-секция -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <h1>Возьмите свой цифровой хабитус под контроль</h1>
-        <p class="subtitle">SKYT анализирует вашу активность и предлагает осознанные альтернативы</p>
-        <div class="cta-buttons">
-          <a href="dashboard.html" class="btn-primary">Начать анализ</a>
-          <a href="features.html" class="btn-secondary">Узнать больше</a>
+    <!-- Шапка сайта -->
+    <header class="navbar">
+        <div class="container navbar__container">
+            <a href="index.html" class="navbar__logo">
+                <!-- LOGOTIP -->
+                SKYT
+                <!-- <img src="assets/icons/" alt="SKYT Logo" height="30"> -->
+            </a>
+            <nav>
+                <ul class="navbar__menu">
+                    <li><a href="index.html" class="navbar__link navbar__link--active">Главная</a></li>
+                    <li><a href="features.html" class="navbar__link">Возможности</a></li>
+                    <li><a href="dashboard.html" class="navbar__link">Статистика</a></li>
+                    <li><a href="history.html" class="navbar__link">История</a></li>
+                    <li><a href="settings.html" class="btn btn--outline">Настройки</a></li>
+                    <!--  -->
+                    <!-- <li><a href="#login" class="btn btn--primary">Войти</a></li> -->
+                </ul>
+            </nav>
+            <!-- Можно добавить бургер-меню для мобильных -->
         </div>
-      </div>
-      <div class="hero-image">
-        <img src="assets/images/dashboard-preview.png" alt="Превью SKYT" class="shadow-lg">
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- Блок возможностей -->
-  <section class="features-overview">
-    <div class="container">
-      <h2>Ключевые возможности</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="icon"><img src="assets/icons/analytics.svg" alt="Аналитика"></div>
-          <h3>Детальная аналитика</h3>
-          <p>Отслеживание времени по категориям, сайтам и активности</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon"><img src="assets/icons/ai.svg" alt="AI"></div>
-          <h3>Умные рекомендации</h3>
-          <p>Персональные предложения контента на основе ваших интересов</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon"><img src="assets/icons/block.svg" alt="Блокировка"></div>
-          <h3>Контроль доступа</h3>
-          <p>Гибкие лимиты для соцсетей и развлекательных сайтов</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <main>
+        <!-- Герой-секция (Hero Section) -->
+        <section class="hero">
+            <div class="container hero__container">
+                <div class="hero__content animate--up">
+                    <h1 class="hero__title">Возьмите под контроль своё время в сети</h1>
+                    <p class="hero__subtitle">SKYT помогает осознанно подходить к интернет-серфингу, анализируя вашу активность и предлагая полезные альтернативы бесцельному скроллингу.</p>
+                    <div class="hero__buttons">
+                        <a href="dashboard.html" class="btn btn--primary">Перейти к статистике</a>
+                        <a href="features.html" class="btn btn--outline">Узнать больше</a>
+                        <!--  -->
+                    </div>
+                </div>
+                <div class="hero__image animate">
+                    <!-- Заменить на актуальный скриншот или иллюстрацию ! -->
+                    <img src="assets/images/dashboard-preview.png" alt="Превью интерфейса SKYT" class="shadow-lg" style="max-width: 100%; border-radius: 8px;">
+                </div>
+            </div>
+        </section>
 
-  <!-- Футер -->
-  <footer class="main-footer">
-    <div class="container">
-      <div class="footer-links">
-        <a href="privacy.html">Конфиденциальность</a>
-        <a href="terms.html">Условия использования</a>
-        <a href="mailto:support@skyt.app">Поддержка</a>
-      </div>
-      <div class="social-links">
-        <a href="#"><img src="assets/icons/twitter.svg" alt="Twitter"></a>
-        <a href="#"><img src="assets/icons/telegram.svg" alt="Telegram"></a>
-      </div>
-    </div>
-  </footer>
+        <!-- Обзор возможностей (Features Overview) -->
+        <section class="features section">
+            <div class="container">
+                <h2 class="section__title">Как SKYT вам поможет?</h2>
+                <div class="features__grid">
+                    <div class="feature-card card animate">
+                        <div class="card__body text-center">
+                            <div class="feature-card__icon">📊</div> <!-- Используй иконки SVG или FontAwesome -->
+                            <h3>Детальная Аналитика</h3>
+                            <p>Отслеживайте время, проведенное на сайтах, и смотрите разбивку по категориям (полезное/развлекательное).</p>
+                        </div>
+                    </div>
+                    <div class="feature-card card animate">
+                         <div class="card__body text-center">
+                            <div class="feature-card__icon">💡</div>
+                            <h3>Умные Рекомендации</h3>
+                            <p>Получайте предложения полезного контента (статьи, видео) взамен "убийцам времени".</p>
+                        </div>
+                    </div>
+                    <div class="feature-card card animate">
+                         <div class="card__body text-center">
+                            <div class="feature-card__icon">⏱️</div>
+                            <h3>Настраиваемые Лимиты</h3>
+                            <p>Устанавливайте ограничения на посещение определенных сайтов или категорий.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <script src="js/main.js"></script>
+        <!-- Дополнения -->
+        <!-- Отзывы, CTA -->
+
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer section" style="background-color: var(--color-dark); color: var(--color-light); margin-top: var(--space-lg);">
+        <div class="container text-center">
+            <p>&copy; 2024 SKYT Project. Все права защищены.</p>
+            <div class="footer-links" style="margin-top: var(--space-sm);">
+                <a href="#privacy" style="color: var(--color-gray); margin: 0 var(--space-xs);">Политика конфиденциальности</a> |
+                <a href="#terms" style="color: var(--color-gray); margin: 0 var(--space-xs);">Условия использования</a> |
+                <a href="mailto:support@skyt.example.com" style="color: var(--color-gray); margin: 0 var(--space-xs);">Поддержка</a>
+            </div>
+             <!-- Соц. приложения -->
+        </div>
+    </footer>
+
+    <!-- Подключение скриптов <script src="js/main.js"></script> -->
+
 </body>
 </html>
