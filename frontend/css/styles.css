@@ -293,3 +293,12 @@ a:hover {
     grid-template-columns: 1fr;
   }
 }
+
+.category-badge.cat-science { background-color: #2ecc71; } 
+.category-badge.cat-tech { background-color: #3498db; } 
+.category-badge.cat-memes { background-color: #f1c40f; } 
+.category-badge.cat-social { background-color: #e74c3c; } 
+.category-badge.cat-news { background-color: #95a5a6; } 
+.category-badge.cat-productive { background-color: #1abc9c; } 
+.category-badge.cat-distracting { background-color: #e67e22; } 
+.category-badge.cat-unknown { background-color: #bdc3c7; } 
