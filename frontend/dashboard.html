@@ -1,27 +1,73 @@
-<!DOCTYPE html>  <!-- Die code -->
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>SKYT | Статистика</title>
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKYT - Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Общий стиль -->
+    <link rel="stylesheet" href="css/dashboard.css"> <!-- Стили для dashboard -->
 </head>
 <body>
-  <header>...</header> 
-  
-  <main>
-    <div class="stats-grid">
-      <div class="stat-card">
-        <h3>Потрачено времени</h3>
-        <p id="total-time">2 ч 45 мин</p>
-      </div>
-      <div class="stat-card">
-        <h3>Популярные категории</h3>
-        <ul id="categories-list"></ul>
-      </div>
-    </div>
-    <canvas id="time-chart" width="400" height="200"></canvas>
-  </main>
 
-  <script src="js/dashboard.js"></script>
+    <header>
+        <div class="container">
+            <h1>SKYT - Dashboard</h1>
+            <nav>
+                <!-- Ссылки на другие страницы  -->
+                <a href="index.html">Главная</a>
+                <a href="history.html">История</a>
+                <a href="settings.html">Настройки</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="dashboard-overview">
+            <h2>Обзор за сегодня</h2>
+            <div class="stats">
+                <!-- Общая статистика -->
+                <div class="stat-item">
+                    <h3>Общее время в интернете:</h3>
+                    <p id="total-time">0h 0m</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Полезный контент:</h3>
+                    <p id="productive-time">0h 0m</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Развлекательный контент:</h3>
+                    <p id="unproductive-time">0h 0m</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard-charts">
+            <h2>Графики</h2>
+            <div class="chart-container">
+                <!-- График категорий контента (круговая диаграмма) -->
+                <h3>Категории контента</h3>
+                <canvas id="category-chart"></canvas>
+            </div>
+            <div class="chart-container">
+                <!-- График времени использования сайтов (столбчатая диаграмма) -->
+                <h3>Время по сайтам</h3>
+                <canvas id="website-chart"></canvas>
+            </div>
+        </section>
+
+        <section class="dashboard-controls">
+            <h2>Управление</h2>
+            <!-- Контролы для лимитов времени -->
+            <p>Здесь могут быть элементы управления для установки лимитов времени.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 SKYT - Stop Kill Your Time</p>
+        </div>
+    </footer>
+
+    <script src="js/dashboard.js"></script>
 </body>
 </html>
