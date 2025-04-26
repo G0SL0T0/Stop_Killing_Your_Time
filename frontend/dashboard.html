@@ -1,73 +1,177 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SKYT - Dashboard</title>
-    <link rel="stylesheet" href="css/styles.css"> <!-- Общий стиль -->
-    <link rel="stylesheet" href="css/dashboard.css"> <!-- Стили для dashboard -->
+    <title>SKYT | Статистика Активности</title>
+
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="css/styles.css">      <!-- Основные стили -->
+    <link rel="stylesheet" href="css/dashboard.css">   <!-- Стили дашборда -->
+
+    <!-- Иконка сайта (favicon) -->
+    <!-- <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon"> -->
+
+    <style>
+        /* Дополнительные стили*/
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .time-filters { 
+            display: flex;
+            gap: var(--space-sm);
+        }
+        .time-filters .btn.active { 
+             background-color: var(--color-primary);
+             color: white;
+         }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+        }
+
+        .stat-card {
+            background-color: white;
+            padding: var(--space-md);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary);
+            box-shadow: var(--shadow-sm);
+        }
+        .stat-card h3 {
+            font-size: var(--text-base);
+            color: var(--color-dark);
+            margin-bottom: var(--space-xs);
+        }
+        .stat-card__value { 
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+        .stat-card__meta {
+             font-size: var(--text-xs);
+             color: var(--color-gray);
+             margin-top: var(--space-xs);
+         }
+
+        .chart-container {
+            background: white;
+            padding: var(--space-md);
+            border-radius: 8px;
+            margin-bottom: var(--space-xl);
+            box-shadow: var(--shadow-sm);
+        }
+        .chart-container h2 {
+             font-size: var(--text-md);
+             text-align: center;
+             margin-bottom: var(--space-md);
+         }
+    </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <h1>SKYT - Dashboard</h1>
+    <!-- Шапка сайта -->
+    <header class="navbar">
+        <div class="container navbar__container">
+            <a href="index.html" class="navbar__logo">SKYT</a>
             <nav>
-                <!-- Ссылки на другие страницы  -->
-                <a href="index.html">Главная</a>
-                <a href="history.html">История</a>
-                <a href="settings.html">Настройки</a>
+                <ul class="navbar__menu">
+                    <li><a href="index.html" class="navbar__link">Главная</a></li>
+                    <li><a href="features.html" class="navbar__link">Возможности</a></li>
+                    <li><a href="dashboard.html" class="navbar__link navbar__link--active">Статистика</a></li>
+                    <li><a href="history.html" class="navbar__link">История</a></li>
+                    <li><a href="settings.html" class="btn btn--outline">Настройки</a></li>
+                    <!-- <li><a href="#login" class="btn btn--primary">Войти</a></li> -->
+                </ul>
             </nav>
         </div>
     </header>
 
-    <main class="container">
-        <section class="dashboard-overview">
-            <h2>Обзор за сегодня</h2>
-            <div class="stats">
-                <!-- Общая статистика -->
-                <div class="stat-item">
-                    <h3>Общее время в интернете:</h3>
-                    <p id="total-time">0h 0m</p>
-                </div>
-                <div class="stat-item">
-                    <h3>Полезный контент:</h3>
-                    <p id="productive-time">0h 0m</p>
-                </div>
-                <div class="stat-item">
-                    <h3>Развлекательный контент:</h3>
-                    <p id="unproductive-time">0h 0m</p>
-                </div>
-            </div>
-        </section>
+    <main class="section">
+        <div class="container">
 
-        <section class="dashboard-charts">
-            <h2>Графики</h2>
-            <div class="chart-container">
-                <!-- График категорий контента (круговая диаграмма) -->
-                <h3>Категории контента</h3>
-                <canvas id="category-chart"></canvas>
+            <!-- Заголовок и Фильтры -->
+            <div class="dashboard-header">
+                <h1>Статистика Активности</h1>
+                <div class="time-filters">
+                    <button class="btn btn--outline" data-period="day">Сегодня</button>
+                    <button class="btn btn--outline active" data-period="week">Неделя</button> <!-- Неделя по умолчанию -->
+                    <button class="btn btn--outline" data-period="month">Месяц</button>
+                </div>
             </div>
-            <div class="chart-container">
-                <!-- График времени использования сайтов (столбчатая диаграмма) -->
-                <h3>Время по сайтам</h3>
-                <canvas id="website-chart"></canvas>
-            </div>
-        </section>
 
-        <section class="dashboard-controls">
-            <h2>Управление</h2>
-            <!-- Контролы для лимитов времени -->
-            <p>Здесь могут быть элементы управления для установки лимитов времени.</p>
-        </section>
+            <!-- Сетка с ключевыми показателями -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <h3>Общее время онлайн</h3>
+                    <p id="total-time" class="stat-card__value">Загрузка...</p>
+                    <p class="stat-card__meta">За выбранный период</p>
+                </div>
+                <div class="stat-card" style="border-left-color: var(--color-success);"> <!-- Зеленый для продуктивного -->
+                    <h3>Продуктивное время</h3>
+                    <p id="productive-time" class="stat-card__value">Загрузка...</p>
+                    <p id="productive-percent" class="stat-card__meta">-% от общего</p>
+                </div>
+                <div class="stat-card" style="border-left-color: var(--color-warning);"> <!-- Оранжевый/красный для отвлекающего -->
+                    <h3>Развлекательное время</h3>
+                    <p id="distracting-time" class="stat-card__value">Загрузка...</p>
+                    <p id="distracting-percent" class="stat-card__meta">-% от общего</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Топ категория</h3>
+                    <p id="top-category" class="stat-card__value">-</p>
+                     <p class="stat-card__meta">Самая посещаемая</p>
+                </div>
+                 <div class="stat-card">
+                    <h3>Топ сайт</h3>
+                    <p id="top-site" class="stat-card__value">-</p>
+                    <p class="stat-card__meta">Самый посещаемый</p>
+                </div>
+            </section>
+
+            <!-- Графики -->
+            <section class="charts-area">
+                <div class="chart-container">
+                    <h2 id="time-chart-title">Время онлайн по дням (за неделю)</h2>
+                    <!-- Chart.js -->
+                    <canvas id="time-chart" width="400" height="150"></canvas>
+                </div>
+
+                <div class="chart-container">
+                    <h2 id="category-chart-title">Разбивка времени по категориям (за неделю)</h2>
+                     <!-- Chart.js -->
+                    <canvas id="category-chart" width="400" height="250"></canvas> <!-- Круговые лучше делать более квадратными -->
+                </div>
+            </section>
+
+        </div>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 SKYT - Stop Kill Your Time</p>
+    <!-- Подвал -->
+    <footer class="footer section" style="background-color: var(--color-dark); color: var(--color-light); margin-top: var(--space-lg);">
+        <div class="container text-center">
+            <p>&copy; 2024 SKYT Project. Все права защищены.</p>
+             <div class="footer-links" style="margin-top: var(--space-sm);">
+                 <a href="#privacy" style="color: var(--color-gray); margin: 0 var(--space-xs);">Политика конфиденциальности</a> |
+                 <a href="#terms" style="color: var(--color-gray); margin: 0 var(--space-xs);">Условия использования</a> |
+                 <a href="mailto:support@skyt.example.com" style="color: var(--color-gray); margin: 0 var(--space-xs);">Поддержка</a>
+             </div>
         </div>
     </footer>
 
+    <!-- Подключение библиотеки Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Скрипт загрузки данных и отрисовки графиков -->
     <script src="js/dashboard.js"></script>
+
 </body>
 </html>
