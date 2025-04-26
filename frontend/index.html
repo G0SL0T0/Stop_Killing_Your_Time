@@ -1,19 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-  <title>SKYT</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKYT — Умный контроль времени</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
-  <div class="container">
-    <h1>📺 SKYT</h1>
-    <form id="add-form">
-      <input type="text" id="title" placeholder="Название видео" required>
-      <input type="text" id="url" placeholder="URL" required>
-      <button type="submit">Добавить в историю</button>
-    </form>
-    <div id="output"></div>
-  </div>
-  <script src="app.js"></script>
+  <!-- Шапка с навигацией -->
+  <header class="main-header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="assets/icons/logo.svg" alt="SKYT" width="120">
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html" class="active">Главная</a></li>
+          <li><a href="features.html">Возможности</a></li>
+          <li><a href="dashboard.html">Статистика</a></li>
+          <li><a href="history.html">История</a></li>
+          <li><a href="settings.html" class="btn-outline">Настройки</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Герой-секция -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Возьмите свой цифровой хабитус под контроль</h1>
+        <p class="subtitle">SKYT анализирует вашу активность и предлагает осознанные альтернативы</p>
+        <div class="cta-buttons">
+          <a href="dashboard.html" class="btn-primary">Начать анализ</a>
+          <a href="features.html" class="btn-secondary">Узнать больше</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="assets/images/dashboard-preview.png" alt="Превью SKYT" class="shadow-lg">
+      </div>
+    </div>
+  </section>
+
+  <!-- Блок возможностей -->
+  <section class="features-overview">
+    <div class="container">
+      <h2>Ключевые возможности</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon"><img src="assets/icons/analytics.svg" alt="Аналитика"></div>
+          <h3>Детальная аналитика</h3>
+          <p>Отслеживание времени по категориям, сайтам и активности</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon"><img src="assets/icons/ai.svg" alt="AI"></div>
+          <h3>Умные рекомендации</h3>
+          <p>Персональные предложения контента на основе ваших интересов</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon"><img src="assets/icons/block.svg" alt="Блокировка"></div>
+          <h3>Контроль доступа</h3>
+          <p>Гибкие лимиты для соцсетей и развлекательных сайтов</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="privacy.html">Конфиденциальность</a>
+        <a href="terms.html">Условия использования</a>
+        <a href="mailto:support@skyt.app">Поддержка</a>
+      </div>
+      <div class="social-links">
+        <a href="#"><img src="assets/icons/twitter.svg" alt="Twitter"></a>
+        <a href="#"><img src="assets/icons/telegram.svg" alt="Telegram"></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
