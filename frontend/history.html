@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKYT | История Просмотров</title>
+
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Отдельный history.css ! -->
+    <!-- <link rel="stylesheet" href="css/history.css"> -->
+
+    <!-- Иконка сайта (favicon) -->
+    <!-- <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon"> -->
+
+    <style>
+        /* Дополнительные стили (Перенос в css) */
+        .filter-bar {
+            background-color: white;
+            padding: var(--space-md);
+            margin-bottom: var(--space-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+            align-items: flex-end;
+        }
+        .filter-bar .form__group {
+            margin-bottom: 0;
+            flex-grow: 1;
+        }
+        .filter-bar .form__group--compact {
+             flex-grow: 0;
+         }
+        .filter-bar button {
+            height: calc(var(--text-base) * 1.6 + 2 * var(--space-xs) + 2px);
+            white-space: nowrap;
+        }
+
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--space-lg);
+            background-color: white;
+            box-shadow: var(--shadow-sm);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .history-table th,
+        .history-table td {
+            padding: var(--space-sm);
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .history-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            font-size: var(--text-sm);
+            color: var(--color-dark);
+        }
+        .history-table tbody tr:hover {
+            background-color: #f1f3f5;
+        }
+        .history-table td a {
+            color: var(--color-primary);
+        }
+         .history-table td .category-badge {
+             display: inline-block;
+             padding: 2px var(--space-xs);
+             font-size: var(--text-xs);
+             border-radius: 4px;
+             color: white;
+             background-color: var(--color-gray);
+         }
+          .history-table td .category-badge.cat-science { background-color: var(--color-success); }
+          .history-table td .category-badge.cat-tech { background-color: var(--color-primary); }
+          .history-table td .category-badge.cat-memes { background-color: var(--color-warning); }
+          .history-table td .category-badge.cat-social { background-color: #ff6b6b; } 
+          .history-table td .category-badge.cat-news { background-color: #495057; }
+
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        .pagination button, .pagination span {
+            padding: var(--space-xs) var(--space-sm);
+            border: 1px solid var(--color-gray);
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+         .pagination button:disabled {
+             cursor: not-allowed;
+             opacity: 0.5;
+         }
+         .pagination span.current-page {
+             background-color: var(--color-primary);
+             color: white;
+             border-color: var(--color-primary);
+             font-weight: 600;
+         }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header class="navbar">
+        <div class="container navbar__container">
+            <a href="index.html" class="navbar__logo">SKYT</a>
+            <nav>
+                <ul class="navbar__menu">
+                    <li><a href="index.html" class="navbar__link">Главная</a></li>
+                    <li><a href="features.html" class="navbar__link">Возможности</a></li>
+                    <li><a href="dashboard.html" class="navbar__link">Статистика</a></li>
+                    <li><a href="history.html" class="navbar__link navbar__link--active">История</a></li>
+                    <li><a href="settings.html" class="btn btn--outline">Настройки</a></li>
+                    <!-- <li><a href="#login" class="btn btn--primary">Войти</a></li> -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container">
+            <h1>История Просмотров</h1>
+
+            <!-- Панель фильтров -->
+            <section class="filter-bar">
+                <div class="form__group">
+                    <label for="search-query" class="form__label">Поиск по заголовку/URL</label>
+                    <input type="text" id="search-query" class="form__control" placeholder="Введите запрос...">
+                </div>
+                <div class="form__group form__group--compact">
+                    <label for="category-filter" class="form__label">Категория</label>
+                    <select id="category-filter" class="form__control">
+                        <option value="">Все категории</option>
+                        <option value="science">Наука</option>
+                        <option value="tech">Технологии</option>
+                        <option value="memes">Мемы</option>
+                        <option value="social">Соцсети</option>
+                        <option value="news">Новости</option>
+                        <option value="productive">Продуктивное</option>
+                        <option value="distracting">Развлекательное</option>
+                        <!-- Добавление категорий -->
+                    </select>
+                </div>
+                 <div class="form__group form__group--compact">
+                    <label for="date-from" class="form__label">Дата от</label>
+                    <input type="date" id="date-from" class="form__control">
+                </div>
+                <div class="form__group form__group--compact">
+                    <label for="date-to" class="form__label">Дата до</label>
+                    <input type="date" id="date-to" class="form__control">
+                </div>
+                <button id="apply-filters-btn" class="btn btn--primary">Применить</button>
+            </section>
+
+            <!-- Таблица с историей -->
+            <section class="history-display">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Дата и время</th>
+                            <th>Заголовок страницы</th>
+                            <th>URL</th>
+                            <th>Категория</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-table-body">
+                        <!-- Строки дбавляются через JS -->
+                        <!--
+                        <tr>
+                            <td>2023-10-26 14:35:10</td>
+                            <td>Интересная статья о квантовой физике</td>
+                            <td><a href="https://example.com/physics" target="_blank">example.com/physics</a></td>
+                            <td><span class="category-badge cat-science">Наука</span></td>
+                        </tr>
+                        <tr>
+                            <td>2023-10-26 15:10:22</td>
+                            <td>Смешные котики (видео)</td>
+                            <td><a href="https://youtube.com/watch?v=abc" target="_blank">youtube.com/watch?v=abc</a></td>
+                             <td><span class="category-badge cat-memes">Мемы</span></td>
+                        </tr>
+                         -->
+                         <tr>
+                            <td colspan="4" style="text-align: center; padding: var(--space-lg);">Загрузка данных...</td>
+                         </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Пагинация -->
+            <section class="pagination" id="pagination-controls">
+                <button id="prev-page" disabled>&laquo; Назад</button>
+                <span id="page-info">Страница <span class="current-page">1</span> из <span id="total-pages">1</span></span>
+                <button id="next-page" disabled>Вперед &raquo;</button>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer section" style="background-color: var(--color-dark); color: var(--color-light); margin-top: var(--space-lg);">
+        <div class="container text-center">
+             <p>&copy; 2024 SKYT Project. Все права защищены.</p>
+            <div class="footer-links" style="margin-top: var(--space-sm);">
+                <a href="#privacy" style="color: var(--color-gray); margin: 0 var(--space-xs);">Политика конфиденциальности</a> |
+                <a href="#terms" style="color: var(--color-gray); margin: 0 var(--space-xs);">Условия использования</a> |
+                <a href="mailto:support@skyt.example.com" style="color: var(--color-gray); margin: 0 var(--space-xs);">Поддержка</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Скрипта для загрузки истории -->
+    <script src="js/history.js"></script>
+
+</body>
+</html>
