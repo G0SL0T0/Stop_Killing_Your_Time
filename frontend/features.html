@@ -1,65 +1,243 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>SKYT — Возможности</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/features.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKYT — Возможности</title>
+
+    <!-- Стили -->
+    <link rel="stylesheet" href="css/styles.css"> <!-- Основные стили -->
+    <link rel="stylesheet" href="css/features.css">
+
+    <!-- <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon"> -->
+
+    <style>
+      .feature-section {
+        padding: var(--space-lg) 0;
+        border-bottom: 1px solid #eee;
+      }
+      .feature-section:last-child {
+        border-bottom: none;
+      }
+      .feature-section .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-lg);
+        align-items: center;
+      }
+      .feature-section.alt-layout .container {
+        grid-template-columns: 1fr 1fr; 
+      }
+       .feature-section.alt-layout .container .feature-image {
+           order: -1;
+       }
+
+      .feature-image img {
+        max-width: 100%;
+        border-radius: 8px;
+        box-shadow: var(--shadow-md);
+      }
+      .feature-list {
+          list-style: none;
+          padding-left: 0;
+      }
+       .feature-list li {
+           position: relative;
+           padding-left: calc(var(--space-sm) + 10px);
+           margin-bottom: var(--space-sm);
+       }
+        .feature-list li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+        }
+
+      .page-header {
+          padding: var(--space-md) 0;
+          background-color: var(--color-primary-dark);
+          color: white;
+          margin-bottom: var(--space-xl);
+      }
+       .page-header h1 {
+           margin-bottom: var(--space-sm);
+           text-align: center;
+       }
+       .features-nav {
+          text-align: center;
+       }
+        .features-nav a {
+            color: var(--color-light);
+            margin: 0 var(--space-sm);
+            padding: var(--space-xs) 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+         .features-nav a:hover {
+             border-bottom-color: var(--color-accent);
+             color: white;
+         }
+
+      /* Адаптация для мобильных */
+      @media (max-width: 768px) {
+          .feature-section .container,
+          .feature-section.alt-layout .container {
+              grid-template-columns: 1fr;
+              text-align: center;
+          }
+           .feature-section .container .feature-image,
+           .feature-section.alt-layout .container .feature-image {
+               order: 0;
+               margin-bottom: var(--space-md);
+           }
+           .feature-list li {
+              padding-left: 0;
+              text-align: left;
+           }
+           .feature-list li::before {
+               position: static;
+               margin-right: var(--space-xs);
+           }
+      }
+    </style>
 </head>
 <body>
-  <header class="main-header">...</header> <!--  -->
 
-  <main class="features-page">
-    <section class="page-header">
-      <div class="container">
-        <h1>Полный спектр возможностей</h1>
-        <nav class="features-nav">
-          <a href="#analytics">Аналитика</a>
-          <a href="#recommendations">Рекомендации</a>
-          <a href="#controls">Контроль</a>
-        </nav>
-      </div>
-    </section>
+    <!-- Шапка сайта -->
+    <header class="navbar">
+        <div class="container navbar__container">
+            <a href="index.html" class="navbar__logo">SKYT</a>
+            <nav>
+                <ul class="navbar__menu">
+                    <li><a href="index.html" class="navbar__link">Главная</a></li>
+                    <li><a href="features.html" class="navbar__link navbar__link--active">Возможности</a></li>
+                    <li><a href="dashboard.html" class="navbar__link">Статистика</a></li>
+                    <li><a href="history.html" class="navbar__link">История</a></li>
+                    <li><a href="settings.html" class="btn btn--outline">Настройки</a></li>
+                    <!-- <li><a href="#login" class="btn btn--primary">Войти</a></li> -->
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <section id="analytics" class="feature-section">
-      <div class="container">
-        <div class="feature-content">
-          <h2>Глубокий анализ активности</h2>
-          <ul class="feature-list">
-            <li>Визуализация времени по категориям</li>
-            <li>Сравнение периодов (неделя/месяц)</li>
-            <li>Экспорт данных в CSV</li>
-          </ul>
-        </div>
-        <div class="feature-image">
-          <img src="assets/images/analytics-screenshot.png" alt="Аналитика">
-        </div>
-      </div>
-    </section>
-
-    <section id="recommendations" class="feature-section alt-bg">
-      <div class="container">
-        <div class="feature-image">
-          <img src="assets/images/recommendations-screenshot.png" alt="Рекомендации">
-        </div>
-        <div class="feature-content">
-          <h2>Интеллектуальные предложения</h2>
-          <p>Наша система на базе AI анализирует:</p>
-          <div class="feature-highlights">
-            <div class="highlight-item">
-              <span class="highlight-icon">📊</span>
-              <span>Просматриваемый контент</span>
+    <main>
+        <!-- Заголовок страницы с внутренней навигацией -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Полный спектр возможностей SKYT</h1>
+                <nav class="features-nav">
+                    <a href="#analytics">Аналитика</a>
+                    <a href="#recommendations">Рекомендации</a>
+                    <a href="#controls">Контроль</a>
+                    <a href="#integration">Интеграция</a>
+                </nav>
             </div>
-            <div class="highlight-item">
-              <span class="highlight-icon">⏱️</span>
-              <span>Продолжительность сессий</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+        </section>
 
-  <footer class="main-footer">...</footer>
+        <!-- Секция: Аналитика -->
+        <section id="analytics" class="feature-section">
+            <div class="container">
+                <div class="feature-content">
+                    <h2>📊 Глубокий анализ вашей активности</h2>
+                    <p>SKYT не просто считает время. Мы помогаем понять, *как* вы его проводите в сети.</p>
+                    <ul class="feature-list">
+                        <li>Автоматический парсинг истории браузеров (Chrome, Firefox).</li>
+                        <li>Классификация посещенных страниц по категориям (работа, учеба, развлечения, новости, соцсети и т.д.) с использованием NLP.</li>
+                        <li>Интеграция с YouTube API для получения метаданных видео.</li>
+                        <li>Наглядные дашборды с графиками и статистикой по дням, неделям, месяцам.</li>
+                        <li>Определение самых "залипательных" сайтов и типов контента.</li>
+                        <li>Возможность ручного добавления и классификации ссылок.</li>
+                    </ul>
+                    <a href="dashboard.html" class="btn btn--primary mt-sm">Смотреть свою статистику</a>
+                </div>
+                <div class="feature-image">
+                    <!-- Изображение! -->
+                    <img src="assets/images/analytics-screenshot.png" alt="Пример дашборда аналитики SKYT">
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция: Рекомендации -->
+        <section id="recommendations" class="feature-section alt-layout" style="background-color: #f8f9fa;"> <!-- Чередуем фон -->
+            <div class="container">
+                 <div class="feature-image">
+                     <!-- Изображения! -->
+                    <img src="assets/images/recommendations-screenshot.png" alt="Пример рекомендаций в SKYT">
+                </div>
+                <div class="feature-content">
+                    <h2>💡 Интеллектуальные рекомендации</h2>
+                    <p>Хватит бесцельно скроллить! SKYT предлагает осмысленные альтернативы на основе ваших реальных интересов и целей.</p>
+                     <ul class="feature-list">
+                        <li>Анализ заголовков и контента посещенных страниц для понимания ваших интересов.</li>
+                        <li>Подбор непросмотренных видео и статей по полезным для вас темам.</li>
+                        <li>Фильтрация низкокачественного и кликбейтного контента.</li>
+                        <li>Возможность указать интересующие тематики вручную.</li>
+                        <li>Предложения основываются на том, что вы *действительно* смотрите, а не только на лайках.</li>
+                    </ul>
+                     <!-- Рекомендации, если будут! -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция: Контроль -->
+        <section id="controls" class="feature-section">
+            <div class="container">
+                <div class="feature-content">
+                    <h2>⏱️ Инструменты контроля и осознанности</h2>
+                    <p>Верните себе управление своим вниманием с помощью гибких настроек и уведомлений.</p>
+                    <ul class="feature-list">
+                        <li>Установка дневных лимитов времени для конкретных сайтов (например, "не более 60 минут на YouTube").</li>
+                        <li>Создание "черного списка" сайтов для автоматической классификации или блокировки.</li>
+                        <li>Настраиваемые уведомления (например, "Вы провели уже 30 минут в соцсетях" или "Превышен лимит на развлекательном сайте").</li>
+                        <li>Возможность включения "режима фокусировки", временно блокирующего отвлекающие сайты.</li>
+                        <li>Планируется интеграция с Telegram для анализа времени в каналах.</li>
+                    </ul>
+                     <a href="settings.html" class="btn btn--primary mt-sm">Настроить лимиты</a>
+                </div>
+                 <div class="feature-image">
+                     <!-- Изображения! -->
+                    <img src="assets/images/settings-screenshot.png" alt="Пример настроек лимитов в SKYT">
+                </div>
+            </div>
+        </section>
+
+         <!-- Секция: Интеграция и Платформы -->
+        <section id="integration" class="feature-section alt-layout" style="background-color: #f8f9fa;">
+            <div class="container">
+                 <div class="feature-image">
+                     <!-- Изображения! -->
+                    <img src="assets/images/platforms-integration.png" alt="Интеграция SKYT с браузерами и платформами">
+                </div>
+                <div class="feature-content">
+                    <h2>🔌 Удобная интеграция и доступ</h2>
+                    <p>SKYT работает там, где вы проводите время.</p>
+                     <ul class="feature-list">
+                        <li>Десктопное приложение для Windows, macOS, Linux (в планах).</li>
+                        <li>Браузерные расширения для Chrome и Firefox для бесшовного трекинга (в разработке).</li>
+                        <li>OAuth 2.0 для безопасного доступа к истории через API Google/VK (в разработке).</li>
+                        <li>Оффлайн-режим с локальным хранением данных и последующей синхронизацией (в разработке).</li>
+                        <li>Адаптивный веб-интерфейс для доступа со смартфонов (в разработке).</li>
+                    </ul>
+                     <!-- Ссылки на расширения! -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer section" style="background-color: var(--color-dark); color: var(--color-light); margin-top: var(--space-xl);">
+        <div class="container text-center">
+            <p>&copy; 2024 SKYT Project. Все права защищены.</p>
+            <div class="footer-links" style="margin-top: var(--space-sm);">
+                <a href="#privacy" style="color: var(--color-gray); margin: 0 var(--space-xs);">Политика конфиденциальности</a> |
+                <a href="#terms" style="color: var(--color-gray); margin: 0 var(--space-xs);">Условия использования</a> |
+                <a href="mailto:support@skyt.example.com" style="color: var(--color-gray); margin: 0 var(--space-xs);">Поддержка</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение скриптов <script src="js/features.js"></script> -->
+
 </body>
 </html>
