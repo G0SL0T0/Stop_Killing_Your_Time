@@ -1,0 +1,154 @@
+SKYT - Stop_Kill_Your_Time Project Documentation
+Last Updated: now
+
+📌 Project Overview
+SKYT (Stop Kill Your Time) — десктопное приложение для осознанного контроля времени в интернете.
+
+
+
+🔹 Core Idea
+Помочь пользователям:
+✅ Снизить бесцельный скроллинг в соцсетях
+✅ Автоматически классифицировать контент (полезный/развлекательный)
+✅ Предлагать осмысленные альтернативы (образовательные видео, статьи)
+
+
+
+🚀 Current Implementation
+
+
+1. Технологический стек
+Компонент	->	Технологии
+Frontend	->	HTML5, CSS3 (BEM, Flexbox/Grid), Vanilla JS
+Backend	->	Node.js + Express, PostgreSQL
+NLP	->	Natural (JavaScript-библиотека)
+Хранение	->	SQL (PostgreSQL), локальные JSON (для оффлайн-режима)
+Деплой	->	Docker (Nginx + Postgres)
+
+
+2. Функционал (реализовано)
+Трекер активности:
+
+Парсинг истории браузера (Chrome/Firefox)
+
+Ручной ввод URL для анализа
+
+Классификация контента:
+
+NLP-анализ заголовков (категории: "наука", "технологии", "мемы")
+
+Интеграция с YouTube API (получение метаданных)
+
+Рекомендации:
+
+Подбор непросмотренных видео/статей
+
+Фильтрация низкокачественного контента
+
+
+
+3. Интерфейс
+Главная страница: Статистика за день
+
+Dashboard: Графики по времени/категориям
+
+История: Просмотренные ссылки с фильтрами
+
+Настройки: Лимиты времени, черный список сайтов
+
+
+
+📂 File Structure
+
+
+🌍 Репозиторий: https://github.com/G0SL0T0/Stop_Kill_Your_Time
+
+Stop_Kill_Your_Time
+│
+├── backend/
+│   ├── controllers/
+│   │   └── historyController.js
+│   ├── models/
+│   │   └── History.js
+│   ├── db.js
+│   └── server.js
+│
+├── frontend/
+│   ├── assets/
+│   ├── css/
+│   │   ├── components/
+│   │   │   ├── buttons.css
+│   │   │   ├── cards.css
+│   │   │   └── nav.css
+│   │   │
+│   │   ├── dashboard.css
+│   │   ├── features.css
+│   │   ├── home.css
+│   │   └── styles.css
+│   │
+│   ├── js/
+│   │   ├── app.js
+│   │   ├── dashboard.js
+│   │   └── history.js
+│   │
+│   ├── dashboard.html
+│   ├── features.html
+│   ├── index.html
+│   └── settings.html
+│
+├── launcher (START)/
+│   ├── start.bat
+│   └── start.sh
+│
+├── migrations/
+│   ├── 001-create-history.js
+│   └── 20231001-create-history.js
+│
+├── nlp/
+│   └── classifier.js
+│
+├── .env
+├── docker-compose.yml
+└── README.md
+
+
+
+🔴 Что не реализовано (TODO)
+Авторизация
+
+OAuth 2.0 (Google/VK) для доступа к истории через API
+
+Расширение для браузеров
+
+Chrome Manifest v3
+
+Firefox WebExtensions API
+
+Оффлайн-режим
+
+Резервное сохранение в IndexedDB
+
+Мобильная версия
+
+Адаптация интерфейса под смартфоны
+
+
+
+📈 Next Steps
+Добавить JWT-аутентификацию (Priority: High)
+
+Реализовать уведомления (например, "Вы потратили 1 час на YouTube!")
+
+Интеграция с Telegram API для анализа времени в каналах
+
+
+
+📝 Контакты
+По вопросам разработки:
+✉️ почта (но я ее не дам)
+💬 @телеграмм (Но его я тоже не дам)
+
+
+
+🔐 Лицензия: незнаю такого
+🌍 Репозиторий: глянь в начале
