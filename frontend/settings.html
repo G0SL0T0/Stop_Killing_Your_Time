@@ -1,1 +1,242 @@
-<!-- Die code -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKYT — Настройки</title>
+
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Можно добавить отдельный файл стилей для настроек, если потребуется -->
+    <!-- <link rel="stylesheet" href="css/settings.css"> -->
+
+    <!-- Иконка сайта (favicon) -->
+    <!-- <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon"> -->
+
+    <style>
+        /* Доп. стили для страницы настроек */
+        .settings-section {
+            margin-bottom: var(--space-lg);
+        }
+        .settings-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .settings-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-xs) 0;
+            border-bottom: 1px solid #eee; /* var(--color-light-gray) */
+        }
+        .settings-list li:last-child {
+            border-bottom: none;
+        }
+        .settings-list button {
+            padding: var(--space-xs) var(--space-sm);
+            font-size: var(--text-xs);
+            background-color: var(--color-danger);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .settings-list button:hover {
+            opacity: 0.8;
+        }
+        .form-inline {
+            display: flex;
+            gap: var(--space-sm);
+            align-items: flex-end; 
+        }
+        .form-inline .form__group {
+            flex-grow: 1;
+            margin-bottom: 0;
+        }
+         .form-inline .form__control {
+             margin-bottom: 0;
+         }
+        .form-inline button {
+             white-space: nowrap;
+             height: calc(var(--text-base) * 1.6 + 2 * var(--space-xs) + 2px);
+        }
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        .toggle-switch input[type="checkbox"] {
+             height: 1.2em;
+             width: 1.2em;
+             cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header class="navbar">
+        <div class="container navbar__container">
+            <a href="index.html" class="navbar__logo">SKYT</a>
+            <nav>
+                <ul class="navbar__menu">
+                    <li><a href="index.html" class="navbar__link">Главная</a></li>
+                    <li><a href="features.html" class="navbar__link">Возможности</a></li>
+                    <li><a href="dashboard.html" class="navbar__link">Статистика</a></li>
+                    <li><a href="history.html" class="navbar__link">История</a></li>
+                    <li><a href="settings.html" class="navbar__link navbar__link--active">Настройки</a></li>
+                    <!-- <li><a href="#login" class="btn btn--primary">Войти</a></li> -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container">
+            <h1 class="section__title">Настройки приложения</h1>
+
+            <!-- Секция: Лимиты времени -->
+            <section class="settings-section card">
+                <div class="card__body">
+                    <h3>Лимиты времени на сайтах</h3>
+                    <p>Установите максимальное время (в минутах), которое вы можете проводить на определенных сайтах в день.</p>
+
+                    <form id="add-limit-form" class="form-inline mb-lg">
+                        <div class="form__group">
+                            <label for="limit-url" class="form__label" style="display:none;">URL сайта</label>
+                            <input type="text" id="limit-url" class="form__control" placeholder="Например, youtube.com" required>
+                        </div>
+                        <div class="form__group" style="flex-grow: 0; width: 100px;">
+                            <label for="limit-time" class="form__label" style="display:none;">Лимит (мин)</label>
+                            <input type="number" id="limit-time" class="form__control" placeholder="Мин" min="1" required>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Добавить</button>
+                    </form>
+
+                    <h4>Установленные лимиты:</h4>
+                    <ul id="limits-list" class="settings-list">
+                        <!-- Добавление лимитов через JS -->
+                        <li>
+                            <span>youtube.com - 60 минут/день</span>
+                            <button class="remove-limit-btn" data-url="youtube.com">Удалить</button>
+                        </li>
+                        <li>
+                            <span>vk.com - 45 минут/день</span>
+                            <button class="remove-limit-btn" data-url="vk.com">Удалить</button>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Секция: Черный список -->
+            <section class="settings-section card">
+                 <div class="card__body">
+                    <h3>Черный список сайтов</h3>
+                    <p>Сайты из этого списка будут учитываться как "развлекательные" или могут быть полностью заблокированы (настраивается).</p>
+
+                    <form id="add-blacklist-form" class="form-inline mb-lg">
+                        <div class="form__group">
+                             <label for="blacklist-url" class="form__label" style="display:none;">URL сайта</label>
+                            <input type="text" id="blacklist-url" class="form__control" placeholder="Например, pikabu.ru" required>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Добавить</button>
+                    </form>
+
+                    <h4>Сайты в черном списке:</h4>
+                    <ul id="blacklist" class="settings-list">
+                        <!-- Добавление сайтов через JS -->
+                        <li>
+                            <span>pikabu.ru</span>
+                            <button class="remove-blacklist-btn" data-url="pikabu.ru">Удалить</button>
+                        </li>
+                        <li>
+                            <span>reddit.com</span>
+                            <button class="remove-blacklist-btn" data-url="reddit.com">Удалить</button>
+                        </li>
+                    </ul>
+                 </div>
+            </section>
+
+             <!-- Секция: Уведомления -->
+             <section class="settings-section card">
+                <div class="card__body">
+                    <h3>Уведомления</h3>
+                    <div class="form__group toggle-switch">
+                        <input type="checkbox" id="notify-limit-exceeded" checked>
+                        <label for="notify-limit-exceeded">Предупреждать при превышении дневного лимита на сайте</label>
+                    </div>
+                     <div class="form__group toggle-switch">
+                        <input type="checkbox" id="notify-long-session">
+                        <label for="notify-long-session">Уведомлять о слишком долгой непрерывной сессии на развлекательном сайте</label>
+                    </div>
+                    <div class="form__group">
+                        <label for="long-session-threshold">Порог для долгой сессии (минут):</label>
+                        <input type="number" id="long-session-threshold" class="form__control" value="30" min="5" style="max-width: 100px;">
+                    </div>
+                     <div class="form__group toggle-switch">
+                        <input type="checkbox" id="notify-daily-report">
+                        <label for="notify-daily-report">Присылать ежедневный отчет об активности (требуется настройка)</label>
+                    </div>
+                </div>
+             </section>
+
+             <!-- Секция: Интеграции -->
+             <section class="settings-section card">
+                <div class="card__body">
+                    <h3>Интеграции</h3>
+                    <p>Подключите браузерные расширения и аккаунты для более точного трекинга.</p>
+                    <div>
+                        <strong>Расширение Chrome:</strong> <span style="color: var(--color-warning);">Не установлено</span>
+                        <!-- <button class="btn btn--outline btn--sm">Установить</button> -->
+                    </div>
+                     <div style="margin-top: var(--space-sm);">
+                        <strong>Расширение Firefox:</strong> <span style="color: var(--color-warning);">Не установлено</span>
+                        <!-- <button class="btn btn--outline btn--sm">Установить</button> -->
+                    </div>
+                     <div style="margin-top: var(--space-lg);">
+                        <!-- Заменить на активную кнопку при реализации OAuth !! -->
+                        <p>Доступ к истории через API:</p>
+                        <button disabled class="btn btn--outline">Подключить Google</button>
+                        <button disabled class="btn btn--outline">Подключить VK</button> 
+                    </div>
+                </div>
+             </section>
+
+             <!-- Секция: Управление данными -->
+              <section class="settings-section card">
+                 <div class="card__body">
+                     <h3>Управление данными и Аккаунт</h3>
+                     <!--  -->
+                     <p>Текущий пользователь: <span id="user-email">guest</span></p>
+                     <div class="mt-sm">
+                         <button id="clear-local-data-btn" class="btn btn--outline" disabled>Очистить локальный кэш</button>
+                         <button id="export-data-btn" class="btn btn--outline">Экспорт истории (CSV)</button>
+                     </div> 
+                     <!-- Активировать после логина !! -->
+                     <div class="mt-lg">
+                         <button id="logout-btn" class="btn btn--secondary" disabled>Выйти</button>
+                         <button id="delete-account-btn" class="btn btn--danger" disabled style="margin-left: var(--space-sm);">Удалить аккаунт</button>
+                     </div>
+                 </div>
+              </section>
+
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer section" style="background-color: var(--color-dark); color: var(--color-light); margin-top: var(--space-lg);">
+        <div class="container text-center">
+             <p>&copy; 2024 SKYT Project. Все права защищены.</p>
+            <div class="footer-links" style="margin-top: var(--space-sm);">
+                <a href="#privacy" style="color: var(--color-gray); margin: 0 var(--space-xs);">Политика конфиденциальности</a> |
+                <a href="#terms" style="color: var(--color-gray); margin: 0 var(--space-xs);">Условия использования</a> |
+                <a href="mailto:support@skyt.example.com" style="color: var(--color-gray); margin: 0 var(--space-xs);">Поддержка</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение скриптов <script src="js/settings.js"></script> -->
+
+
+</body>
+</html>
