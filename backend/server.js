@@ -31,7 +31,7 @@ router.delete('/history/:id', historyController.deleteHistoryEntry);
 module.exports = router; // Экспорт
 
 
-// Роуты
+// Остальные роуты
 app.post('/api/history', historyController.create);
 app.get('/api/history', historyController.list);
 app.get('/api/history/stats', historyController.getStats);

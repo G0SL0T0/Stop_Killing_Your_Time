@@ -57,7 +57,6 @@ exports.getHistory = async (req, res) => {
         const totalPages = Math.ceil(totalItems / limit);
 
         // --- Запрос №2: Получаем сами записи с учетом пагинации и сортировки ---
-        // Добавляем параметры для LIMIT и OFFSET к существующим параметрам
         const dataQueryParams = [...queryParams, limit, offset];
         const dataQuery = `
             SELECT id, title, url, visited_at AS "visitedAt", category
@@ -120,7 +119,7 @@ exports.addHistoryEntry = async (req, res) => {
 exports.getHistoryStats = async (req, res) => {
     const period = req.query.period || 'week'; // 'day', 'week', 'month'
 
-    // Далее: Реализовать логику получения статистики из БД
+    // В будущем: Реализовать логику получения статистики из БД
     // - Подсчет общего времени
     // - Подсчет времени по категориям (продуктивное/развлекательное)
     // - Определение топ-категории/сайта
