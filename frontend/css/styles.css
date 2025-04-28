@@ -294,6 +294,24 @@ a:hover {
   }
 }
 
+.animate,
+.animate--up {
+  opacity: 0;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform; /* Подсказка браузеру для оптимизации */
+}
+
+.animate--up {
+  transform: translateY(30px); /* Начальное смещение для slideInUp */
+}
+
+/* Конечное состояние элементов при добавлении класса is-visible */
+.animate.is-visible,
+.animate--up.is-visible {
+  opacity: 1;
+  transform: translateY(0); /* Возвращаем на место */
+}
+
 .category-badge.cat-science { background-color: #2ecc71; } 
 .category-badge.cat-tech { background-color: #3498db; } 
 .category-badge.cat-memes { background-color: #f1c40f; } 
