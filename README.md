@@ -1,6 +1,7 @@
 # SKYT - Stop_Kill_Your_Time Project
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+Проект на стадии разработки!
 
 ## 📌 Project Overview
 
