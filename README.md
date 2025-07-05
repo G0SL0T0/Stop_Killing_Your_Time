@@ -22,7 +22,7 @@ SKYT (Stop Kill Your Time) — это десктопное приложение,
 
 | Компонент   | Технологии                             |
 | :---------- | :------------------------------------- |
-| Frontend    | HTML5, CSS3 (BEM, Flexbox/Grid), Vanilla JS |
+| Frontend    | HTML5, CSS3 (BEM, Flexbox/Grid), Vie JS |
 | Backend     | Node.js + Express, PostgreSQL          |
 | NLP         | Natural (JavaScript-библиотека)         |
 | Хранение    | SQL (PostgreSQL)                       |
